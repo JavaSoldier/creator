@@ -5,13 +5,14 @@ import oshi.hardware.HardwareAbstractionLayer;
 import oshi.hardware.Processor;
 import oshi.software.os.OperatingSystem;
 import oshi.util.FormatUtil;
+import sun.misc.BASE64Encoder;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.nio.file.Files;
-import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -25,12 +26,14 @@ import java.nio.file.Paths;
 public class Creator {
 
     private static final Path sysFilePath = Paths.get("D:\\sys.txt");
+    private static final String DEFAULT_ENCODING = "UTF-8";
+    private static BASE64Encoder enc = new BASE64Encoder();
 
     public static void main(String[] args) throws IOException {
-       if(!Files.exists(sysFilePath, LinkOption.NOFOLLOW_LINKS)) {
-           Files.createFile(sysFilePath);
-           writeToFile(createSystemInfoString());
-       }
+        Files.deleteIfExists(sysFilePath);
+        Files.createFile(sysFilePath);
+        writeToFile(base64encode(createSystemInfoString()));
+
     }
 
     private static void writeToFile(String sysInfo) throws IOException {
@@ -65,5 +68,14 @@ public class Creator {
         }
         sysInfoString.append("\n");
         return sysInfoString.toString();
+    }
+
+    private static String base64encode(String text) {
+        try {
+            String rez = enc.encode(text.getBytes(DEFAULT_ENCODING));
+            return rez;
+        } catch (UnsupportedEncodingException e) {
+            return null;
+        }
     }
 }
