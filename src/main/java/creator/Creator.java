@@ -72,8 +72,7 @@ public class Creator {
 
     private static String base64encode(String text) {
         try {
-            String rez = enc.encode(text.getBytes(DEFAULT_ENCODING));
-            return rez;
+            return enc.encode(text.getBytes(DEFAULT_ENCODING));
         } catch (UnsupportedEncodingException e) {
             return null;
         }
