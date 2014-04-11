@@ -59,13 +59,13 @@ public class Creator {
         sysInfoString.append(FormatUtil.formatBytes(hal.getMemory().getTotal()));
         sysInfoString.append("\n");
 
-        InetAddress ip = InetAddress.getLocalHost();
-        NetworkInterface network = NetworkInterface.getByInetAddress(ip);
-        byte[] mac = network.getHardwareAddress();
-
-        for (int i = 0; i < mac.length; i++) {
-            sysInfoString.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
-        }
+//        InetAddress ip = InetAddress.getLocalHost();
+//        NetworkInterface network = NetworkInterface.getByInetAddress(ip);
+//        byte[] mac = network.getHardwareAddress();
+//
+//        for (int i = 0; i < mac.length; i++) {
+//            sysInfoString.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
+//        }
         sysInfoString.append("\n");
         return sysInfoString.toString();
     }

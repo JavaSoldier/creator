@@ -28,7 +28,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <mainClass>creator.Creator</mainClass>
-                            <classpathPrefix>dependency-jars/</classpathPrefix>
+                            <classpathPrefix>lib/</classpathPrefix>
                         </manifest>
                     </archive>
                 </configuration>
@@ -46,7 +46,7 @@
                         </goals>
                         <configuration>
                             <includeGroupIds>net.java.dev.jna</includeGroupIds>
-                            <outputDirectory>${project.build.directory}/dependency-jars/</outputDirectory>
+                            <outputDirectory>${project.build.directory}/lib/</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
